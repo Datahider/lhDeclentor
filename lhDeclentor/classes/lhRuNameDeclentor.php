@@ -53,7 +53,19 @@ class lhRuNameDeclentor extends lhAbstractDeclentor {
     }
 
     public function accusative($name = null) {
-        return $this->setWord();
+        $name = $this->setWord($name);
+        $cc = self::$consonants_class;
+        if ($name == 'Павел') return 'Павла';
+        if ($name == 'Пётр') return 'Петра';
+        
+        if (preg_match("/$name( |$)/u", self::$mans_exceptions)) { return preg_replace("/ь$/", 'я', $name); }
+        if (preg_match("/$cc$/u", $name)) { return $name.'а'; };
+        $name = preg_replace("/й$/u", 'я', $name, -1, $count); if ($count) { return $name; }
+        $name = preg_replace("/а$/u", 'у', $name, -1, $count); if ($count) { return $name; }
+        $name = preg_replace("/ия$/u", 'ию', $name, -1, $count); if ($count) { return $name; }
+        $name = preg_replace("/иа$/u", 'иу', $name, -1, $count); if ($count) { return $name; }
+        $name = preg_replace("/я$/u", 'ю', $name, -1, $count); if ($count) { return $name; }
+        return $name;
     }
 
     public function ablative($name = null) {
