@@ -21,6 +21,7 @@ class lhRuNameDeclentor extends lhAbstractDeclentor {
         $cc = self::$consonants_class;
         if ($name == 'Ольга') return 'Ольги';
         if ($name == 'Павел') return 'Павла';
+        if ($name == 'Пётр') return 'Петра';
         
         if (preg_match("/$name( |$)/u", self::$mans_exceptions)) { return preg_replace("/ь$/", 'я', $name); }
         if (preg_match("/$cc$/u", $name)) { return $name.'а'; };
@@ -38,6 +39,7 @@ class lhRuNameDeclentor extends lhAbstractDeclentor {
         if ($name == 'Ольга') return 'Ольге';
         if ($name == 'Зульфия') return 'Зульфие';
         if ($name == 'Павел') return 'Павлу';
+        if ($name == 'Пётр') return 'Петру';
         
         if (preg_match("/$name( |$)/u", self::$mans_exceptions)) { return preg_replace("/ь$/", 'ю', $name); }
         if (preg_match("/$cc$/u", $name)) { return $name.'у'; };
