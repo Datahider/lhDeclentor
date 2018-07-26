@@ -11,12 +11,14 @@
  *
  * @author Петя Datahider
  */
-interface lhAbstractDeclentor {
-    public function nominative();      // Именительный падеж: Петя
-    public function genitive();        // Родительный падеж:  Пети
-    public function dative();          // Дательный падеж:    Пете
-    public function accusative();      // Винительный падеж:  Петю
-    public function ablative();        // Творительный падеж: Петей
-    public function prepositional();   // Предложный падеж:   Пете
-    public function vocative();        // Звательный падеж:   Петь
+interface lhDeclentorInterface {
+    public function nominative($name=null);      // Именительный падеж: Петя
+    public function genitive($name=null);        // Родительный падеж:  Пети
+    public function dative($name=null);          // Дательный падеж:    Пете
+    public function accusative($name=null);      // Винительный падеж:  Петю
+    public function ablative($name=null);        // Творительный падеж: Петей
+    public function prepositional($name=null);   // Предложный падеж:   Пете
+    public function vocative($name=null);        // Звательный падеж:   Петь
+    
+    public function declent($case, $word=null);  // Склонение в переданном падеже
 }

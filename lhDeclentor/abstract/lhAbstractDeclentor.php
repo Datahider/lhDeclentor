@@ -11,7 +11,16 @@
  *
  * @author Петя Datahider
  */
-abstract class lhAbstractDeclentor {
+require_once LH_LIB_ROOT . 'lhDeclentor/interface/lhDeclentorInterface.php';
+
+abstract class lhAbstractDeclentor implements lhDeclentorInterface {
+    public static $nominative = 0;
+    public static $genitive = 1;
+    public static $dative = 2;
+    public static $accusative = 3;
+    public static $ablative = 4;
+    public static $prepositional = 5;
+    public static $vocative = 6;
     protected $word;
     
     public function __construct($word=null) {
@@ -19,14 +28,41 @@ abstract class lhAbstractDeclentor {
         $this->setWord($word);
     }
     
-    abstract public function nominative();      // Именительный падеж: Петя
-    abstract public function genitive();        // Родительный падеж:  Пети
-    abstract public function dative();          // Дательный падеж:    Пете
-    abstract public function accusative();      // Винительный падеж:  Петю
-    abstract public function ablative();        // Творительный падеж: Петей
-    abstract public function prepositional();   // Предложный падеж:   Пете
-    abstract public function vocative();        // Звательный падеж:   Петь
+    public function nominative($name=null) {
+        $name = $this->setWord($name);
+        return $name;
+    }
+
+    abstract public function genitive($name=null);        // Родительный падеж:  Пети
+    abstract public function dative($name=null);          // Дательный падеж:    Пете
+    abstract public function accusative($name=null);      // Винительный падеж:  Петю
+    abstract public function ablative($name=null);        // Творительный падеж: Петей
+    abstract public function prepositional($name=null);   // Предложный падеж:   Пете
+    abstract public function vocative($name=null);        // Звательный падеж:   Петь
     
+    public function declent($case, $word=null) {
+        $this->setWord($word);
+        switch ($case) {
+            case self::$nominative:
+                return $this->nominative();
+            case self::$genitive:
+                return $this->genitive();
+            case self::$dative:
+                return $this->dative();
+            case self::$nominative:
+                return $this->accusative();
+            case self::$nominative:
+                return $this->ablative();
+            case self::$nominative:
+                return $this->prepositional();
+            case self::$nominative:
+                return $this->vocative();
+            default:
+                throw new Exception("Неизвестный падеж $case. Используйте одну из констант в ".__FILE__.' строка: '.__LINE__);
+        }
+    }
+
+
     protected function setWord($word=null) {
         if ($word !== null) {
             $this->word = $word;
