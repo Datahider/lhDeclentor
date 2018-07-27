@@ -75,10 +75,5 @@ class lhRuNameDeclentor extends lhAbstractDeclentor {
     public function prepositional($name = null) {
         return $this->setWord();
     }
-
-    public function vocative($name = null) {
-        return $this->setWord();
-    }
-
 }
         

@@ -18,7 +18,6 @@ interface lhDeclentorInterface {
     public function accusative($name=null);      // Винительный падеж:  Петю
     public function ablative($name=null);        // Творительный падеж: Петей
     public function prepositional($name=null);   // Предложный падеж:   Пете
-    public function vocative($name=null);        // Звательный падеж:   Петь
     
     public function declent($case, $word=null);  // Склонение в переданном падеже
 }
