@@ -48,14 +48,12 @@ abstract class lhAbstractDeclentor implements lhDeclentorInterface {
                 return $this->genitive();
             case self::$dative:
                 return $this->dative();
-            case self::$nominative:
+            case self::$accusative:
                 return $this->accusative();
-            case self::$nominative:
+            case self::$ablative:
                 return $this->ablative();
-            case self::$nominative:
+            case self::$prepositional:
                 return $this->prepositional();
-            case self::$nominative:
-                return $this->vocative();
             default:
                 throw new Exception("Неизвестный падеж $case. Используйте одну из констант в ".__FILE__.' строка: '.__LINE__);
         }
