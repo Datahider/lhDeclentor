@@ -14,18 +14,20 @@
 require_once LH_LIB_ROOT . 'lhDeclentor/abstract/lhAbstractDeclentor.php';
 class lhRuNameDeclentor extends lhAbstractDeclentor {
     protected static $consonants_class = '[бвгджзклмнпрстфхцчшщ]';
+    protected static $strange_consonants_class = '[гжкхчшщ]';
     protected static $mans_exceptions = 'Игорь Израиль Камиль Лазарь Марсель Наиль Олесь Авиль Азиль Амиль Анель Афаэль Фазиль Фидель Цезарь Шамиль Шарль Эмиль';
 
     public function genitive($name=null) {
         $name = $this->setWord($name);
         $cc = self::$consonants_class;
-        if ($name == 'Ольга') return 'Ольги';
+        $sc = self::$strange_consonants_class;
         if ($name == 'Павел') return 'Павла';
         if ($name == 'Пётр') return 'Петра';
         
         if (preg_match("/$name( |$)/u", self::$mans_exceptions)) { return preg_replace("/ь$/", 'я', $name); }
         if (preg_match("/$cc$/u", $name)) { return $name.'а'; };
         $name = preg_replace("/й$/u", 'я', $name, -1, $count); if ($count) { return $name; }
+        $name = preg_replace("/(${sc})а$/u", '$1и', $name, -1, $count); if ($count) { return $name; }
         $name = preg_replace("/а$/u", 'ы', $name, -1, $count); if ($count) { return $name; }
         $name = preg_replace("/я$/u", 'и', $name, -1, $count); if ($count) { return $name; }
         $name = preg_replace("/иа$/u", 'ии', $name, -1, $count); if ($count) { return $name; }
