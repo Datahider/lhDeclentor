@@ -11,7 +11,7 @@
  *
  * @author Петя Datahider
  */
-require_once LH_LIB_ROOT . 'lhDeclentor/abstract/lhAbstractDeclentor.php';
+require_once __DIR__ . '/../abstract/lhAbstractDeclentor.php';
 class lhRuNameDeclentor extends lhAbstractDeclentor {
     protected static $consonants_class = '[бвгджзклмнпрстфхцчшщ]';
     protected static $strange_consonants_class = '[гжкхчшщ]';

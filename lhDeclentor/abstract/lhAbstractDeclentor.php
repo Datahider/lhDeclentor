@@ -11,7 +11,7 @@
  *
  * @author Петя Datahider
  */
-require_once LH_LIB_ROOT . 'lhDeclentor/interface/lhDeclentorInterface.php';
+require_once __DIR__ . '/../interface/lhDeclentorInterface.php';
 
 abstract class lhAbstractDeclentor implements lhDeclentorInterface {
     public static $nominative = 0;
